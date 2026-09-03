@@ -61,6 +61,19 @@
 			<artifactId>mysql-connector-j</artifactId>
 			<scope>runtime</scope>
 		</dependency>
+		
+<!-- Flyway: controle de versionamento do schema do banco de dados.
+     No Spring Boot 4, e necessario o starter especifico para ativar
+     a auto-configuracao (flyway-core sozinho nao e mais suficiente) -->
+		<dependency>
+   			<groupId>org.springframework.boot</groupId>
+    		<artifactId>spring-boot-starter-flyway</artifactId>
+		</dependency>
+		
+		<dependency>
+   			<groupId>org.flywaydb</groupId>
+    		<artifactId>flyway-mysql</artifactId>
+		</dependency>
 
 		<!-- Dependencias de TESTE (Spring Boot 4 exige starter de teste correspondente a cada starter principal) -->
 		<dependency>
