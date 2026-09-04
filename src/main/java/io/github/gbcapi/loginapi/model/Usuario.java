@@ -7,7 +7,9 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import java.time.LocalDateTime;
+import java.util.List;
 
 // @Entity: diz para o Hibernate que esta classe representa uma tabela no banco de dados
 @Entity
@@ -40,6 +42,13 @@ public class Usuario {
 
 	// Guarda a data e hora em que a conta foi criada (util para auditoria)
 	private LocalDateTime dataCriacao;
+
+	// @OneToMany: UM usuario pode ter MUITOS enderecos.
+	// mappedBy = "usuario": avisa o JPA que quem controla esse relacionamento
+	// de verdade eh o campo "usuario" la na classe Endereco (o lado @ManyToOne).
+	// Este campo aqui serve so para CONSULTAR os enderecos, nao para criar vinculos.
+	@OneToMany(mappedBy = "usuario")
+	private List<Endereco> enderecos;
 
 	// Enum aninhado: so existe dentro do contexto de Usuario.
 	// Representa os papeis/permissoes possiveis de um usuario no sistema.
@@ -98,7 +107,14 @@ public class Usuario {
 	}
 
 	public void setDataCriacao(LocalDateTime dataCriacao) {
-	    this.dataCriacao = dataCriacao;
+		this.dataCriacao = dataCriacao;
 	}
-	
+
+	public List<Endereco> getEnderecos() {
+		return enderecos;
+	}
+
+	public void setEnderecos(List<Endereco> enderecos) {
+		this.enderecos = enderecos;
+	}
 }
