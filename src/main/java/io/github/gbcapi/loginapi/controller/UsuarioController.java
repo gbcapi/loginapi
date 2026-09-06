@@ -10,6 +10,7 @@ import io.github.gbcapi.loginapi.dto.CadastroUsuarioDTO;
 import io.github.gbcapi.loginapi.dto.UsuarioResponseDTO;
 import io.github.gbcapi.loginapi.model.Usuario;
 import io.github.gbcapi.loginapi.service.UsuarioService;
+import jakarta.validation.Valid;
 
 // @RestController: diz ao Spring que esta classe recebe requisicoes HTTP
 // e devolve respostas em JSON (nunca HTML)
@@ -22,7 +23,7 @@ public class UsuarioController {
 	private UsuarioService usuarioService;
 	
 	@PostMapping
-	public UsuarioResponseDTO cadastrar(@RequestBody CadastroUsuarioDTO dto) {
+	public UsuarioResponseDTO cadastrar(@Valid @RequestBody CadastroUsuarioDTO dto) {
 		
 		Usuario novoUsuario = new Usuario();
 		
